@@ -29,11 +29,14 @@ jobs:
           node-version: lts/*
 
       - name: Install step
-        run: "npm intall"
+        run: "npm install"
+
+      - name: Build step
+        run: "npm run build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "ignaciojge-pelisgql-40"
-          entrypoint: "main.ts"
-          root: ""
+          entrypoint: "https://deno.land/std@0.217.0/http/file_server.ts"
+          root: "build"
