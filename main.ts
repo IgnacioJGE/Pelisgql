@@ -9,7 +9,7 @@ import { Mutation } from "./resolvers/mutations.ts";
 
 
 const env=await load()
-const MONGO_URL = Deno.env.get("MONGO_URL")||env.MONGO_URL||"mongodb+srv://nachetegarcia10:123456789N@cluster0.mwqkjcg.mongodb.net/PELICULAS?retryWrites=true&w=majority";
+const MONGO_URL = Deno.env.get("MONGO_URL")||env.MONGO_URL;
 if (!MONGO_URL) {
   throw new Error("Please provide a MongoDB connection string");
 }
