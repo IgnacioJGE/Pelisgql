@@ -43,12 +43,8 @@ export const Query={
       },
       director: async(_:unknown,args:{id:string}):Promise<tipodirector>=>{
         const director= await Modelodirecotr.findById(args.id)
-        const directormostrar={
-          _id:director?._id,
-          name:director?.name,
-          age:director?.age
-        }
-        return directormostrar
+
+        return director
       },
     };
     
