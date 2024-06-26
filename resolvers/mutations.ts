@@ -6,7 +6,6 @@ import { GraphQLError } from "graphql";
 
 
 
-
 export const Mutation={
     addDirector: async (
         _: unknown,
@@ -36,6 +35,47 @@ export const Mutation={
             console.log()
             await newPeli.save()
             return newPeli;
+          } catch (error) {
+            console.error("Error creating pet:", error);
+            throw new GraphQLError("Failed to create pet");
+          }
+      },
+      deletePeli: async (
+        _: unknown,
+        args: { id:string}
+      ): Promise<tipopeli> => {
+        try {
+            const pelimostrar= await Modelopeli.findById(args.id)
+            await Modelopeli.findByIdAndDelete(args.id)
+            return pelimostrar;
+          } catch (error) {
+            console.error("Error creating pet:", error);
+            throw new GraphQLError("Failed to create pet");
+          }
+      },
+      deleteDirector: async (
+        _: unknown,
+        args: { id:string}
+      ): Promise<tipodirector> => {
+        try {
+            const directormostrar= await Modelodirecotr.findById(args.id)
+            await Modelodirecotr.findByIdAndDelete(args.id)
+            return directormostrar;
+          } catch (error) {
+            console.error("Error creating pet:", error);
+            throw new GraphQLError("Failed to create pet");
+          }
+      },
+      updatePeli: async (
+        _: unknown,
+        args: { id:string,name: string; director:string}
+      ): Promise<tipopeli> => {
+        try {
+            const epleimostrar= await Modelopeli.findByIdAndUpdate(args.id,{
+                name:args.name,
+                director:args.director
+            })
+            return {name:args.name,director:args.director,id:epleimostrar?._id};
           } catch (error) {
             console.error("Error creating pet:", error);
             throw new GraphQLError("Failed to create pet");

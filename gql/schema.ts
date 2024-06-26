@@ -21,5 +21,7 @@ export const typeDefs = `#graphql
     addPeli(name: String!,director:String!): Peli!
     deletePeli(id: ID!): Peli!
     updatePeli(id: ID!, name: String, director: String): Peli!
+    deleteDirector(id: ID!): Director!
+
   }
 `;

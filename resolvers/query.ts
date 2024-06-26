@@ -22,6 +22,23 @@ export const Query={
       ):Promise<tipopeli|null>=>{
         const pelicula:tipopeli|null= await Modelopeli.findById(args.id)
         return pelicula
-      }
+      },
+      pelisdirecotr: async(        _: unknown,
+        args: {director:string}
+      ):Promise<tipopeli[]|null>=>{
+        const director = await Modelodirecotr.findOne({name:args.director})
+        const pelis = await Modelopeli.find()
+        const pelisdirector:tipopeli[]=[];
+        for (let index = 0; index < pelis.length; index++) {
+            if(pelis.at(index)?.director.equals(director?._id)){
+                pelisdirector.push({
+                    id:pelis.at(index)?._id,
+                    director:director?._id,
+                    name: pelis.at(index)?.name
+                })
+            }
+        }
+        return pelisdirector
+      },
     };
     

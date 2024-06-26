@@ -9,7 +9,7 @@ import { Mutation } from "./resolvers/mutations.ts";
 
 
 const env=await load()
-const MONGO_URL = Deno.env.get("MONGO_URL")||env.MONGO_URL||"hola";
+const MONGO_URL = Deno.env.get("MONGO_URL")||env.MONGO_URL||"mongodb+srv://nachetegarcia10:123456789N@cluster0.mwqkjcg.mongodb.net/PELICULAS?retryWrites=true&w=majority";
 if (!MONGO_URL) {
   throw new Error("Please provide a MongoDB connection string");
 }
@@ -27,5 +27,5 @@ const server = new ApolloServer({
   },
 });
 
-const { url } = await startStandaloneServer(server,{listen:{port:3000,},});
+const { url } = await startStandaloneServer(server,{listen:{port:4000,},});
 console.log(`🚀 Server ready at ${url}`);
