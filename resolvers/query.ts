@@ -2,6 +2,7 @@ import { Modelodirecotr } from "../db/directores.ts";
 import { Modelopeli } from "../db/pelis.ts";
 import { tipopeli } from "../db/pelis.ts";
 import { Peli } from '../types.ts';
+import { tipodirector } from '../db/directores.ts';
 export const Query={
     Pelis: async(): Promise<Peli[]>=>{
         const peliculas:tipopeli[]= await Modelopeli.find()
@@ -39,6 +40,15 @@ export const Query={
             }
         }
         return pelisdirector
+      },
+      director: async(_:unknown,args:{id:string}):Promise<tipodirector>=>{
+        const director= await Modelodirecotr.findById(args.id)
+        const directormostrar={
+          _id:director?._id,
+          name:director?.name,
+          age:director?.age
+        }
+        return directormostrar
       },
     };
     
